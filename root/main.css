@@ -1,0 +1,7 @@
+:root {
+    --text-color-base: black;
+}
+
+h1 {
+    color: var(--text-color-base);
+}
