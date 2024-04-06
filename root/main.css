@@ -2,7 +2,7 @@
     --text-color-base: black;
 }
 
-.nunito-sans-main {
+body {
   font-family: "Nunito Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
@@ -15,4 +15,32 @@
 h1 {
     color: var(--text-color-base);
     font-size: 100px;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 3rem 6rem;
+}
+
+#nav-options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5rem;
+    font-size: 1.55rem;
+    margin: 0 auto;
+}
+
+#logo:hover {
+    cursor: pointer;
+}
+
+#logo img {
+    height: 2rem;
+}
+
+#profile-btn {
+    font-size: 1.55rem;
 }
