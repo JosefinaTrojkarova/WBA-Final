@@ -89,12 +89,25 @@ nav a:hover {
     font-weight: 700;
 }
 
+main {
+    padding: 0 ;
+    position: relative;
+}
+
+#hero-img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 17rem;
+    margin-top: 3rem;
+}
+
 #hero {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    margin-top: 5rem;
+    margin-top: 8rem;
 }
 
 #hero-h {
@@ -103,7 +116,8 @@ nav a:hover {
     -webkit-background-clip: text;
     background-clip: text; 
     background-image: var(--brand-gradient);
-    height: 15.6rem;
+    height: 21.6rem;
+    font-size: 20rem;
 }
 
 #hero-btns {

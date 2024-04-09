@@ -1,4 +1,4 @@
-document.querySelector('#top-link').addEventListener('click', function(e) {
+document.querySelector('#nav-logo').addEventListener('click', function(e) {
     e.preventDefault(); // Prevent the default link behavior
   
     window.scrollTo({
