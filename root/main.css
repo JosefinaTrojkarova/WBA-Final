@@ -1,5 +1,7 @@
 :root {
-    --text-color-gradient: linear-gradient(160deg, #3399FF, #3366CC);
+    --brand-gradient: linear-gradient(160deg, #3399FF, #3366CC);
+    --brand-blue-light: #3399FF;
+    --brand-blue-dark: #3366CC;
 }
 
 body {
@@ -45,19 +47,34 @@ button:hover {
     font-size: 1.55rem;
     position: absolute;
     left: 50%;
-  transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+nav a {
+    position: relative;
+    color: black;
+    text-decoration: none;
+    transition: color 0.5s ease;
+}
+
+nav a:hover {
+    color: var(--brand-blue-light);
+}
+
+#nav-logo svg {
+    transition: fill 0.5s ease;
+}
+
+#nav-logo svg:hover {
+    fill: var(--brand-blue-light);
 }
 
 #nav-logo:hover {
     cursor: pointer;
 }
 
-#nav-logo img {
-    height: 2rem;
-}
-
 #profile-btn {
     font-size: 1.55rem;
+    font-weight: 700;
 }
 
 #hero {
@@ -73,7 +90,7 @@ button:hover {
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     background-clip: text; 
-    background-image: var(--text-color-gradient);
+    background-image: var(--brand-gradient);
     height: 15.6rem;
 }
 
@@ -81,6 +98,55 @@ button:hover {
     display: flex;
     flex-direction: row;
     gap: 3rem;
+}
+
+.hero-btn {
+    position: relative;
+    color: inherit;
+    overflow: hidden;
+    transition: color 0.5s ease;
+    z-index: 0;
+}
+
+.hero-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--brand-gradient);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    transition-delay: 0.1s;
+    z-index: -1;
+}
+
+.hero-btn:hover::before {
+    opacity: 1;
+}
+
+.hero-btn:not(:hover)::before {
+    opacity: 0;
+}
+
+.hero-btn:hover {
+    color: white;
+    z-index: 1;
+}
+
+.hero-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: background-color 0.5s ease;
+}
+
+.hero-btn:hover::after {
+    background-color: transparent;
 }
 
 #hero-sh {
