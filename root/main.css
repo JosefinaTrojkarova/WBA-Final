@@ -53,15 +53,27 @@ nav a {
     position: relative;
     color: black;
     text-decoration: none;
-    transition: color 0.5s ease;
+    transition: color 0.4s ease, font-weight 0.4s ease;
+}
+
+nav ul a {
+    display: inline-flex;
+    max-width: 5rem;
+    justify-content: center;
+}
+
+#middle-nav-opt {
+    max-width: 3rem;
+    text-wrap: nowrap;
 }
 
 nav a:hover {
     color: var(--brand-blue-light);
+    font-weight: 800;
 }
 
 #nav-logo svg {
-    transition: fill 0.5s ease;
+    transition: fill 0.4s ease;
 }
 
 #nav-logo svg:hover {
