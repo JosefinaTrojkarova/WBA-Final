@@ -1,17 +1,18 @@
 :root {
     --brand-gradient: linear-gradient(160deg, #3399FF, #3366CC);
     --brand-blue-light: #3399FF;
-    --brand-blue-dark: #3366CC;
+    --brand-blue-dark: #3366cc;
 }
 
 body {
-  font-family: "Nunito Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100,
-    "YTLC" 500;
+    position: relative;
+    font-family: "Nunito Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100,
+        "YTLC" 500;
 }
 
 h1 {
@@ -91,15 +92,12 @@ nav a:hover {
 
 main {
     padding: 0 ;
-    position: relative;
 }
 
-#hero-img {
+#hero-model {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    width: 17rem;
-    margin-top: 3rem;
 }
 
 #hero {
@@ -107,7 +105,7 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    margin-top: 8rem;
+    margin-top: 7rem;
 }
 
 #hero-h {
