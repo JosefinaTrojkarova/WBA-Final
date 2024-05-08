@@ -1,7 +1,7 @@
 :root {
-    --brand-gradient: linear-gradient(160deg, #3399FF, #3366CC);
     --brand-blue-light: #3399FF;
     --brand-blue-dark: #3366cc;
+    --brand-gradient: linear-gradient(160deg, var(--brand-blue-light), var(--brand-blue-dark));
 }
 
 body {
@@ -10,6 +10,7 @@ body {
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
+    overflow-x: hidden;
     font-variation-settings:
         "wdth" 100,
         "YTLC" 500;
@@ -22,11 +23,19 @@ h1 {
 
 nav {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    padding: 3rem 6rem;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 3rem 0;
     position: relative;
+}
+
+#nav-content-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 102rem;
 }
 
 button {
@@ -50,6 +59,7 @@ button:hover {
     left: 50%;
     transform: translateX(-50%);
 }
+
 nav a {
     position: relative;
     color: black;
@@ -91,11 +101,15 @@ nav a:hover {
 }
 
 main {
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
 }
 
 #hero-model {
     position: absolute;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -112,7 +126,7 @@ main {
     color: transparent;
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
-    background-clip: text; 
+    background-clip: text;
     background-image: var(--brand-gradient);
     height: 21.6rem;
     font-size: 20rem;
@@ -176,4 +190,141 @@ main {
 #hero-sh {
     font-size: 3rem;
     font-weight: 500;
+}
+
+#usage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    width: 100%;
+    margin: 14rem auto;
+    margin-bottom: 0;
+}
+
+#usage-content-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 102rem;
+    margin: 10rem auto;
+}
+
+#usage-h3 {
+    font-size: 6rem;
+    font-weight: 700;
+    line-height: 130%;
+}
+
+#usage-h3 a {
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-weight: 800;
+    background-image: var(--brand-gradient);
+}
+
+#how-it-work {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#how-it-work-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 10rem auto;
+    width: 102rem;
+    gap: 5rem;
+}
+
+#how-it-work-p {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 7rem;
+    font-weight: 700;
+}
+
+.how-it-work-article {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 1;
+}
+
+.how-it-work-article:nth-child(3) {
+    align-self: last baseline;
+}
+
+.how-it-work-article img {
+    width: 45rem;
+    height: 30rem;
+    object-fit: cover;
+    object-position: top;
+}
+
+.how-it-work-article-header {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.how-it-work-article-p {
+    font-size: 1.3rem;
+    color: rgb(80, 80, 80);
+}
+
+#why-us {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 30rem 0;
+    font-size: 7rem;
+    font-weight: 700;
+}
+
+#question-layer-2,
+#question-layer-1,
+#question-layer--1,
+#question-layer--2 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50.8%);
+}
+
+#profile-system {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#profile-system-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 102rem;
+    margin: 10rem auto;
+    gap: 5rem;
+}
+
+#profile-system p {
+    font-size: 7rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+#test {
+    height: 500rem;
 }
