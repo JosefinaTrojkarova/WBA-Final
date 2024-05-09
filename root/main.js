@@ -134,7 +134,7 @@ loader.setDRACOLoader(dracoLoader);
 let model;
 
 // glTF loader 2
-loader.load('img/wavetag.glb', function (gltf) {
+loader.load('wavetag.glb', function (gltf) {
 
 	model = gltf.scene;
 	model.rotation.x = Math.PI / 2;
