@@ -316,13 +316,54 @@ main {
     align-items: center;
     width: 102rem;
     margin: 10rem auto;
-    gap: 5rem;
+    gap: 3rem;
 }
 
-#profile-system p {
+#profile-system-header {
     font-size: 7rem;
     font-weight: 700;
     text-align: center;
+}
+
+#profile-system-btn {
+    background-image: var(--brand-gradient);
+    color: white;
+    transition: filter 0.5s ease;
+}
+
+#profile-system-btn:hover {
+    filter: brightness(1.15);
+}
+
+#profile-system-phones {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 5rem 0;
+}
+
+.profile-system-phone {
+    width: 18.9rem;
+    filter: drop-shadow(5px 5px 15px #00000038);
+}
+
+.profile-system-feature-callout {
+    text-align: center;
+    padding-top: 2rem;
+    font-size: 3.5rem;
+    font-weight: 600;
+    width: 55rem;
+}
+
+.profile-system-feature-callout a {
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-weight: 700;
+    background-image: var(--brand-gradient);
 }
 
 #test {
