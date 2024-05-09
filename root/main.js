@@ -122,7 +122,7 @@ controls.addEventListener('end', function () {
 });
 
 
-// glTF loader
+// glTF loader 1
 const loader = new GLTFLoader();
 
 // DRACO loader for compressed geometry
@@ -133,7 +133,7 @@ loader.setDRACOLoader(dracoLoader);
 
 let model;
 
-// glTF loader
+// glTF loader 2
 loader.load('img/wavetag.glb', function (gltf) {
 
 	model = gltf.scene;
