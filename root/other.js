@@ -1,53 +1,58 @@
 const setupParallax = document.getElementById('how-it-work-p');
-const whyUsParallaxMinus2 = document.getElementById('question-layer--2');
-const whyUsParallaxMinus1 = document.getElementById('question-layer--1');
-const whyUsParallaxPlus1 = document.getElementById('question-layer-1');
-const whyUsParallaxPlus2 = document.getElementById('question-layer-2');
+const whyUsParallaxLayers = {
+  minus2: document.getElementById('question-layer--2'),
+  minus1: document.getElementById('question-layer--1'),
+  plus1: document.getElementById('question-layer-1'),
+  plus2: document.getElementById('question-layer-2')
+};
 const whyUs = document.getElementById('why-us');
 
 window.addEventListener('scroll', function () {
   let scrollPosition = window.scrollY;
-  let setupParallaxPosition = (scrollPosition - 1500) * (17 / 21) - 300;
 
+  // Calculate transform position for setupParallax
+  let setupParallaxPosition = calculateSetupParallaxPosition(scrollPosition);
+  setupParallax.style.transform = `translateX(-50%) translateY(${setupParallaxPosition}px)`;
+
+  // Calculate transform positions for whyUsParallaxLayers
+  calculateWhyUsParallaxLayers(scrollPosition);
+
+  // Calculate transform position for whyUs
+  let whyUsPosition = calculateWhyUsPosition(scrollPosition);
+  whyUs.style.transform = `translateY(${whyUsPosition}px)`;
+});
+
+function calculateSetupParallaxPosition(scrollPosition) {
   if (scrollPosition < 1500) {
-    setupParallax.style.transform = `translateX(-50%) translateY(-300px)`;
+    return -300;
   } else if (scrollPosition > 3600) {
-    setupParallax.style.transform = `translateX(-50%) translateY(1400px)`;
+    return 1400;
   } else {
-    setupParallax.style.transform = `translateX(-50%) translateY(${setupParallaxPosition}px)`;
+    return (scrollPosition - 1500) * (17 / 21) - 300;
   }
-});
+}
 
-window.addEventListener('scroll', function () {
-  let scrollPosition = window.scrollY;
-  let whyUsPosition = 0 - (scrollPosition - 4800)
-  let whyUsParallaxMinus2Position = 50 - (scrollPosition - 3400) * (1 / 15);
-  let whyUsParallaxMinus1Position = 100 - (scrollPosition - 3400) * (2 / 15);
-  let whyUsParallaxPlus1Position = (scrollPosition - 3400) * (3 / 15) - 150;
-  let whyUsParallaxPlus2Position = (scrollPosition - 3400) * (4 / 15) - 250;
+function calculateWhyUsParallaxLayers(scrollPosition) {
+  let scrollDelta = scrollPosition - 3400;
+  let transformValues = {
+    minus2: 50 - scrollDelta * (1 / 15),
+    minus1: 100 - scrollDelta * (2 / 15),
+    plus1: scrollDelta * (3 / 15) - 150,
+    plus2: scrollDelta * (4 / 15) - 250
+  };
 
-  if (scrollPosition < 3400) {
-    whyUsParallaxMinus2.style.transform = `translateX(-50.8%) translateY(50px)`;
-    whyUsParallaxMinus1.style.transform = `translateX(-50.8%) translateY(100px)`;
-    whyUsParallaxPlus1.style.transform = `translateX(-50.8%) translateY(-150px)`;
-    whyUsParallaxPlus2.style.transform = `translateX(-50.8%) translateY(-250px)`;
-  } else if (scrollPosition > 4900) {
-    whyUsParallaxMinus2.style.transform = `translateX(-50.8%) translateY(-50px)`;
-    whyUsParallaxMinus1.style.transform = `translateX(-50.8%) translateY(-100px)`;
-    whyUsParallaxPlus1.style.transform = `translateX(-50.8%) translateY(150px)`;
-    whyUsParallaxPlus2.style.transform = `translateX(-50.8%) translateY(150px)`;
-  } else {
-    whyUsParallaxMinus2.style.transform = `translateX(-50.8%) translateY(${whyUsParallaxMinus2Position}px)`;
-    whyUsParallaxMinus1.style.transform = `translateX(-50.8%) translateY(${whyUsParallaxMinus1Position}px)`;
-    whyUsParallaxPlus1.style.transform = `translateX(-50.8%) translateY(${whyUsParallaxPlus1Position}px)`;
-    whyUsParallaxPlus2.style.transform = `translateX(-50.8%) translateY(${whyUsParallaxPlus2Position}px)`;
-  }
+  Object.keys(whyUsParallaxLayers).forEach(layer => {
+    let transformValue = transformValues[layer];
+    whyUsParallaxLayers[layer].style.transform = `translateX(-50.8%) translateY(${transformValue}px)`;
+  });
+}
 
+function calculateWhyUsPosition(scrollPosition) {
   if (scrollPosition < 4800) {
-    whyUs.style.transform = `translateY(0px)`;
-  } else if (scrollPosition > 5100) {
-    whyUs.style.transform = `translateY(-300px)`;
+    return 0;
+  } else if (scrollPosition > 5150) {
+    return -350;
   } else {
-    whyUs.style.transform = `translateY(${whyUsPosition}px)`;
+    return 0 - (scrollPosition - 4800);
   }
-});
+}
