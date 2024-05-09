@@ -2,8 +2,8 @@ export default {
     build: {
         rollupOptions: {
             input: {
-                demo: "src/demo.js",
-                lib: "lib.js",
+                main: "main.js",
+                alt: "other.js",
                 'index.html': "index.html",
             },
         },
