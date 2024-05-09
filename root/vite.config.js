@@ -4,7 +4,6 @@ export default {
             input: {
                 main: "main.js",
                 alt: "other.js",
-                'index.html': "index.html",
             },
         },
     },
