@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@lottiefiles/lottie-player": "^2.0.4",
     "gsap": "^3.12.5",
     "three": "^0.163.0"
   },

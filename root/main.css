@@ -11,6 +11,7 @@ body {
     font-weight: 500;
     font-style: normal;
     overflow-x: hidden;
+    background-color: #fcfcfc;
     font-variation-settings:
         "wdth" 100,
         "YTLC" 500;
@@ -320,7 +321,7 @@ main {
 }
 
 #profile-system-header {
-    font-size: 7rem;
+    font-size: 6rem;
     font-weight: 700;
     text-align: center;
 }
@@ -366,6 +367,206 @@ main {
     background-image: var(--brand-gradient);
 }
 
-#test {
-    height: 500rem;
+#wavetag-showcase {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10rem 0;
+    background-color: #e8e8e8;
+    font-size: 6rem;
+    font-weight: 700;
+    gap: 10rem;
+    z-index: 1;
+}
+
+#wavetag-showcase-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    height: 40rem;
+    transition: transform 1s ease;
+}
+
+.wavetag-showcase-cards {
+    width: 30rem;
+    filter: blur(3px);
+    transition: width 1s ease, filter 1s ease;
+    cursor: pointer;
+}
+
+.focused {
+    width: 60rem;
+    filter: none;
+}
+
+#eco {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #1f6400;
+}
+
+#eco-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 102rem;
+    height: 68rem;
+    margin: 10rem auto;
+    gap: 3rem;
+}
+
+#eco-header {
+    font-size: 6rem;
+    font-weight: 700;
+    color: white;
+}
+
+#eco-p {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
+}
+
+#eco-img {
+    position: absolute;
+    left: 30rem;
+    bottom: 0;
+}
+
+#faq {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10rem 0;
+}
+
+#faq-header {
+    font-size: 6rem;
+    font-weight: 700;
+}
+
+#faq-questions {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(7, auto);
+    padding-top: 5rem;
+}
+
+.faq-question {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    padding: 1.5rem 0;
+    height: 2rem;
+    overflow: hidden;
+    border-top: 1px solid rgb(200, 200, 200);
+    transition: height 0.5s ease;
+    cursor: pointer;
+}
+
+.faq-question:first-child {
+    border-top: none;
+}
+
+.faq-question-h {
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: 700;
+    padding-bottom: 1.5rem;
+}
+
+.faq-answer {
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 130%;
+    width: 60rem;
+}
+
+.faq-answer a {
+    color: var(--brand-blue-light);
+}
+
+#goodbye-message {
+    white-space: nowrap;
+    font-size: 10rem;
+    font-weight: 800;
+    height: 11rem;
+    color: var(--brand-blue-light);
+    animation: scrollText 15s linear infinite;
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(72.65rem);
+    }
+
+    100% {
+        transform: translateX(-72.65rem);
+    }
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 3rem 0 8rem 0;
+}
+
+#footer-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) 3fr;
+    grid-template-rows: 1fr;
+    column-gap: 2rem;
+    width: 102rem;
+    font-size: 1.1rem;
+    line-height: 130%;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.footer-column-header {
+    font-weight: 800;
+}
+
+#footer-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+#footer-socials {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+#footer-socials img {
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: contain;
+}
+
+#footer-logo {
+    width: 12rem;
+    padding-top: 1rem;
 }

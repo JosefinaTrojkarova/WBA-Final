@@ -1,4 +1,5 @@
 // OTHER JS CODE
+// Parallax effects
 const setupParallax = document.getElementById('how-it-work-p');
 const whyUsParallaxLayers = {
     minus2: document.getElementById('question-layer--2'),
@@ -38,7 +39,7 @@ scrollParallaxEffects();
 window.addEventListener('scroll', scrollParallaxEffects);
 
 function calculateSetupParallaxPosition(scrollPosition) {
-    let scrollDelta = scrollPosition - 1500;
+    const scrollDelta = scrollPosition - 1500;
     let parallaxPosition = scrollDelta * (17 / 21) - 300;
 
     if (scrollPosition < 1500) {
@@ -51,7 +52,7 @@ function calculateSetupParallaxPosition(scrollPosition) {
 }
 
 function calculateWhyUsParallaxLayers(scrollPosition) {
-    let scrollDelta = scrollPosition - 3400;
+    const scrollDelta = scrollPosition - 3400;
     let parallaxPositions = {
         minus2: 50 - scrollDelta * (1 / 15),
         minus1: 100 - scrollDelta * (2 / 15),
@@ -82,7 +83,7 @@ function calculateWhyUsParallaxLayers(scrollPosition) {
 }
 
 function calculateWhyUsPosition(scrollPosition) {
-    let scrollDelta = scrollPosition - 4800;
+    const scrollDelta = scrollPosition - 4800;
     let parallaxPosition = 0 - scrollDelta;
 
     if (scrollPosition < 4800) {
@@ -95,7 +96,7 @@ function calculateWhyUsPosition(scrollPosition) {
 }
 
 function calculatePhoneParallaxes(scrollPosition) {
-    let scrollDelta = scrollPosition - 5000;
+    const scrollDelta = scrollPosition - 5000;
     let parallaxPositions = {
         phone1: 50 - scrollDelta * (1 / 20),
         phone2: scrollDelta * (1 / 20) - 50,
@@ -127,3 +128,62 @@ function calculatePhoneParallaxes(scrollPosition) {
         phoneParallaxes[phone].style.transform = `translateY(${transformValue}px)`;
     });
 }
+
+
+// Card focus animation
+const cards = document.querySelectorAll('.wavetag-showcase-cards');
+const showcase = document.getElementById('wavetag-showcase-cards');
+
+cards.forEach(card => {
+    card.addEventListener('click', function () {
+        cards.forEach(card => {
+            card.classList.remove('focused');
+        });
+
+        this.classList.add('focused');
+
+        let showcasePosition = 0;
+
+        if (this === cards[2]) {
+            showcasePosition = -560;
+        } else if (this === cards[0]) {
+            showcasePosition = 560;
+        }
+
+        showcase.style.transform = `translateX(${showcasePosition}px)`
+    });
+});
+
+
+// Faq animations
+const faqQuestions = document.querySelectorAll('.faq-question');
+const faqIcons = document.querySelectorAll('.faq-question-icon');
+
+faqQuestions.forEach((question, index) => {
+    question.style.height = 'auto';
+    let questionHeight = question.getBoundingClientRect().height - 50;
+    question.style.height = `2rem`;
+
+    question.addEventListener('click', function () {
+        if (this.style.height !== '2rem') {
+            this.style.height = '2rem';
+            faqIcons[index].setDirection(-1);
+            faqIcons[index].play();
+        } else {
+            faqQuestions.forEach(q => {
+                q.style.height = '2rem';
+            });
+
+            this.style.height = `${questionHeight}px`;
+
+            faqIcons.forEach((icon, i) => {
+                icon.setDirection(-1);
+                icon.play();
+                if (i === index) {
+                    icon.setDirection(1);
+                    icon.play();
+                }
+            });
+        }
+    });
+});
