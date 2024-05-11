@@ -1,6 +1,15 @@
 // OTHER JS CODE
+
 // Scroll related effects
-const nav = document.getElementById('nav');
+const navMenu = document.getElementById('nav-menu');
+const navOptions = {
+    option1: document.getElementById('nav-option-1'),
+    option2: document.getElementById('nav-option-2'),
+    option3: document.getElementById('nav-option-3')
+}
+const profileBtn = document.getElementById('profile-btn-text');
+const navBurger = document.getElementById('burger');
+const setupSection = document.getElementById('how-it-work');
 const setupParallax = document.getElementById('how-it-work-p');
 const whyUsParallaxLayers = {
     minus2: document.getElementById('question-layer--2'),
@@ -9,29 +18,63 @@ const whyUsParallaxLayers = {
     plus2: document.getElementById('question-layer-2')
 };
 const whyUs = document.getElementById('why-us');
-const phoneParallaxes = {
+const phoneSection = document.getElementById('profile-system');
+const phonesWrapper = document.getElementById('profile-system-phones');
+const phonesButton = document.getElementById('profile-system-btn');
+const phones = {
     phone1: document.getElementById('profile-system-phone-1'),
     phone2: document.getElementById('profile-system-phone-2'),
     phone3: document.getElementById('profile-system-phone-3'),
     phone4: document.getElementById('profile-system-phone-4'),
     phone5: document.getElementById('profile-system-phone-5')
 }
-const navOptions = {
-    option1: document.getElementById('nav-option-1'),
-    option2: document.getElementById('nav-option-2'),
-    option3: document.getElementById('nav-option-3')
-}
-const profileBtn = document.getElementById('profile-btn-text');
-const navBurger = document.getElementById('burger');
+const featureCallouts = document.querySelectorAll('.profile-system-feature-callout');
+const showcase = document.getElementById('wavetag-showcase-cards');
 
-function scrollParallaxEffects() {
+// Function to handle phone section animations
+function phoneSectionAnimations() {
+    let phonesWrapperPosition = phonesWrapper.getBoundingClientRect().top - (window.innerHeight * 5 / 6);
+    if (phonesWrapperPosition < 0) {
+        phonesWrapper.classList.add('phones-visible');
+        phonesButton.classList.add('profile-system-btn-visible');
+    } else {
+        phonesWrapper.classList.remove('phones-visible');
+        phonesButton.classList.remove('profile-system-btn-visible');
+    }
+
+    featureCallouts.forEach((callout) => {
+        let calloutPosition = callout.getBoundingClientRect().top - (window.innerHeight * 5 / 6);
+
+        if (calloutPosition < 0) {
+            callout.classList.add('callout-visible');
+        } else {
+            callout.classList.remove('callout-visible');
+        }
+    });
+}
+
+// Function to handle showcase animations
+function showcaseAnimations() {
+    let showcasePosition = showcase.getBoundingClientRect().top - (window.innerHeight * 5 / 6);
+    if (showcasePosition < 0) {
+        showcase.classList.add('showcase-visible');
+    } else {
+        showcase.classList.remove('showcase-visible');
+    }
+}
+
+// Function to handle scroll effects
+function handleScrollEffects() {
     let scrollPosition = window.scrollY;
 
-    // Smooth scroll on top and bottom of page
-    smoothScroll(scrollPosition);
+    // Phone section animations
+    phoneSectionAnimations();
+
+    // Showcase animations
+    showcaseAnimations();
 
     // Calculate transform position for setupParallax
-    calculateSetupParallaxPosition(scrollPosition);
+    calculateSetupParallaxPosition();
 
     // Calculate transform positions for whyUsParallaxLayers
     calculateWhyUsParallaxLayers(scrollPosition);
@@ -39,31 +82,20 @@ function scrollParallaxEffects() {
     // Calculate transform position for whyUs
     calculateWhyUsPosition(scrollPosition);
 
-    // Calculate transform positions for phoneParallaxes
-    calculatePhoneParallaxes(scrollPosition);
+    // Calculate transform positions for phones
+    calculatephones(scrollPosition);
 
     // Determine nav fold status
     navFoldStatus(scrollPosition);
 }
 
-// Call scrollParallaxEffects once on page load to position elements correctly
-scrollParallaxEffects();
+// Call handleScrollEffects once on page load to position elements correctly
+handleScrollEffects();
 
-// Call scrollParallaxEffects on scroll event
-window.addEventListener('scroll', scrollParallaxEffects);
+// Call handleScrollEffects on scroll event
+window.addEventListener('scroll', handleScrollEffects);
 
-function smoothScroll(scrollPosition) {
-    let maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-
-    if (scrollPosition === 0 || scrollPosition === maxScroll) {
-        window.scrollTo({
-            top: scrollPosition,
-            behavior: 'smooth'
-        });
-    }
-}
-
-window.addEventListener('scroll', smoothScroll);
+// Function to determine nav fold status
 function navFoldStatus(scrollPosition) {
     if (scrollPosition === 0) {
         profileBtn.classList.remove('profile-btn-hidden');
@@ -86,19 +118,21 @@ function navFoldStatus(scrollPosition) {
     }
 }
 
-function calculateSetupParallaxPosition(scrollPosition) {
-    const scrollDelta = scrollPosition - 1600;
-    let parallaxPosition = scrollDelta * (19 / 24) - 400;
+// Function to calculate transform position for setupParallax
+function calculateSetupParallaxPosition() {
+    let anchor = 0 - (setupSection.getBoundingClientRect().top - window.innerHeight / 2);
+    let parallaxPosition = anchor * (5 / 6) - 400;
 
-    if (scrollPosition < 1600) {
+    if (anchor < 0) {
         parallaxPosition = -400;
-    } else if (scrollPosition > 4000) {
-        parallaxPosition = 1500;
+    } else if (anchor > 2400) {
+        parallaxPosition = 1600;
     }
 
     setupParallax.style.transform = `translateX(-50%) translateY(${parallaxPosition}px)`;
 }
 
+// Function to calculate transform positions for whyUsParallaxLayers
 function calculateWhyUsParallaxLayers(scrollPosition) {
     const scrollDelta = scrollPosition - 3800;
     let parallaxPositions = {
@@ -130,6 +164,7 @@ function calculateWhyUsParallaxLayers(scrollPosition) {
     });
 }
 
+// Function to calculate transform position for whyUs
 function calculateWhyUsPosition(scrollPosition) {
     const scrollDelta = scrollPosition - 5200;
     let parallaxPosition = 0 - scrollDelta;
@@ -143,17 +178,18 @@ function calculateWhyUsPosition(scrollPosition) {
     whyUs.style.transform = `translateY(${parallaxPosition}px)`
 }
 
-function calculatePhoneParallaxes(scrollPosition) {
-    const scrollDelta = scrollPosition - 5400;
+// Function to calculate transform positions for phones
+function calculatephones() {
+    let anchor = 0 - (phoneSection.getBoundingClientRect().top - window.innerHeight);
     let parallaxPositions = {
-        phone1: 50 - scrollDelta * (1 / 20),
-        phone2: scrollDelta * (1 / 20) - 50,
-        phone3: 50 - scrollDelta * (1 / 20),
-        phone4: scrollDelta * (1 / 20) - 50,
-        phone5: 50 - scrollDelta * (1 / 20)
+        phone1: 50 - (anchor - 700) * (1 / 20),
+        phone2: (anchor - 700) * (1 / 20) - 50,
+        phone3: 50 - (anchor - 700) * (1 / 20),
+        phone4: (anchor - 700) * (1 / 20) - 50,
+        phone5: 50 - (anchor - 700) * (1 / 20)
     };
 
-    if (scrollPosition < 5400) {
+    if (anchor < 700) {
         parallaxPositions = {
             phone1: 50,
             phone2: -50,
@@ -161,7 +197,7 @@ function calculatePhoneParallaxes(scrollPosition) {
             phone4: -50,
             phone5: 50
         };
-    } else if (scrollPosition > 6400) {
+    } else if (anchor > 1700) {
         parallaxPositions = {
             phone1: 0,
             phone2: 0,
@@ -171,16 +207,27 @@ function calculatePhoneParallaxes(scrollPosition) {
         };
     }
 
-    Object.keys(phoneParallaxes).forEach(phone => {
+    Object.keys(phones).forEach(phone => {
         let transformValue = parallaxPositions[phone];
-        phoneParallaxes[phone].style.transform = `translateY(${transformValue}px)`;
+        phones[phone].style.transform = `translateY(${transformValue}px)`;
     });
 }
 
+// Other animations and effects
+
+// Nav menu animations
+navBurger.addEventListener('click', () => {
+    if (navMenu.classList.contains('nav-menu-unrolled')) {
+        navMenu.classList.remove('nav-menu-unrolled');
+        document.documentElement.style.overflow = 'auto';
+    } else {
+        navMenu.classList.add('nav-menu-unrolled');
+        document.documentElement.style.overflow = 'hidden';
+    }
+});
 
 // Card focus animation
 const cards = document.querySelectorAll('.wavetag-showcase-cards');
-const showcase = document.getElementById('wavetag-showcase-cards');
 
 cards.forEach(card => {
     card.addEventListener('click', function () {
@@ -201,7 +248,6 @@ cards.forEach(card => {
         showcase.style.transform = `translateX(${showcasePosition}px)`
     });
 });
-
 
 // Faq animations
 const faqQuestions = document.querySelectorAll('.faq-question');

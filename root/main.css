@@ -24,10 +24,57 @@ h1 {
 
 nav {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 0 auto;
     width: 100%;
+    height: 0;
+}
+
+.nav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #fcfcfc;
+    width: 100%;
+    height: 0vh;
+    transition: height 1s ease;
+    overflow: hidden;
+    z-index: 4;
+}
+
+.nav-menu-unrolled {
+    height: 100vh;
+}
+
+#nav-menu-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 5rem 1fr 1fr 1fr 1fr;
+    width: 102rem;
+    height: 100%;
+    min-height: 100vh;
+}
+
+.nav-menu-item {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 10rem;
+    font-weight: 400;
+    border-bottom: solid 1px rgb(200, 200, 200);
+    cursor: pointer;
+    transition: padding-right 0.5s ease;
+}
+
+.nav-menu-item:hover {
+    padding-right: 2rem;
 }
 
 #nav-content-wrapper {
@@ -103,6 +150,7 @@ nav ul a:hover {
 .fa-bars-active {
     transform: translateX(0);
     opacity: 1;
+    cursor: pointer;
 }
 
 .profile-btn-hidden {
@@ -355,7 +403,12 @@ main {
 #profile-system-btn {
     background-image: var(--brand-gradient);
     color: white;
-    transition: filter 0.5s ease;
+    opacity: 0;
+    transition: opacity 1s ease, filter 0.5s ease;
+}
+
+.profile-system-btn-visible {
+    opacity: 1 !important;
 }
 
 #profile-system-btn:hover {
@@ -367,8 +420,17 @@ main {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
+    gap: 7rem;
+    transform: translateY(7rem);
     padding: 5rem 0;
+    opacity: 0;
+    transition: opacity 1.5s ease, gap 1.5s ease, transform 1.5s ease;
+}
+
+.phones-visible {
+    opacity: 1 !important;
+    gap: 2rem !important;
+    transform: translateY(0) !important;
 }
 
 .profile-system-phone {
@@ -382,6 +444,14 @@ main {
     font-size: 3.5rem;
     font-weight: 600;
     width: 55rem;
+    opacity: 0;
+    transform: translateY(5rem);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.callout-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .profile-system-feature-callout a {
@@ -404,7 +474,7 @@ main {
     font-size: 6rem;
     font-weight: 700;
     gap: 10rem;
-    z-index: 0;
+    z-index: 1;
 }
 
 #wavetag-showcase-cards {
@@ -412,10 +482,18 @@ main {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 5rem;
+    gap: 15rem;
+    margin-top: 10rem;
+    opacity: 0;
     height: 40rem;
-    transition: transform 1s ease;
+    transition: gap 1s ease, margin-top 1s ease, opacity 1s ease, transform 1s ease;
     z-index: 0;
+}
+
+.showcase-visible {
+    opacity: 1 !important;
+    gap: 5rem !important;
+    margin-top: 0 !important;
 }
 
 .wavetag-showcase-cards {
@@ -437,7 +515,6 @@ main {
     align-items: center;
     width: 100%;
     background-image: linear-gradient(160deg, #459900, #316d00);
-    z-index: -1;
 }
 
 #eco-wrapper {
