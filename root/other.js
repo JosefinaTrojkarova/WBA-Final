@@ -1,5 +1,6 @@
 // OTHER JS CODE
-// Parallax effects
+// Scroll related effects
+const nav = document.getElementById('nav');
 const setupParallax = document.getElementById('how-it-work-p');
 const whyUsParallaxLayers = {
     minus2: document.getElementById('question-layer--2'),
@@ -15,9 +16,19 @@ const phoneParallaxes = {
     phone4: document.getElementById('profile-system-phone-4'),
     phone5: document.getElementById('profile-system-phone-5')
 }
+const navOptions = {
+    option1: document.getElementById('nav-option-1'),
+    option2: document.getElementById('nav-option-2'),
+    option3: document.getElementById('nav-option-3')
+}
+const profileBtn = document.getElementById('profile-btn-text');
+const navBurger = document.getElementById('burger');
 
 function scrollParallaxEffects() {
     let scrollPosition = window.scrollY;
+
+    // Smooth scroll on top and bottom of page
+    smoothScroll(scrollPosition);
 
     // Calculate transform position for setupParallax
     calculateSetupParallaxPosition(scrollPosition);
@@ -30,6 +41,9 @@ function scrollParallaxEffects() {
 
     // Calculate transform positions for phoneParallaxes
     calculatePhoneParallaxes(scrollPosition);
+
+    // Determine nav fold status
+    navFoldStatus(scrollPosition);
 }
 
 // Call scrollParallaxEffects once on page load to position elements correctly
@@ -38,21 +52,55 @@ scrollParallaxEffects();
 // Call scrollParallaxEffects on scroll event
 window.addEventListener('scroll', scrollParallaxEffects);
 
-function calculateSetupParallaxPosition(scrollPosition) {
-    const scrollDelta = scrollPosition - 1500;
-    let parallaxPosition = scrollDelta * (17 / 21) - 300;
+function smoothScroll(scrollPosition) {
+    let maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
-    if (scrollPosition < 1500) {
-        parallaxPosition = -300;
-    } else if (scrollPosition > 3600) {
-        parallaxPosition = 1400;
+    if (scrollPosition === 0 || scrollPosition === maxScroll) {
+        window.scrollTo({
+            top: scrollPosition,
+            behavior: 'smooth'
+        });
+    }
+}
+
+window.addEventListener('scroll', smoothScroll);
+function navFoldStatus(scrollPosition) {
+    if (scrollPosition === 0) {
+        profileBtn.classList.remove('profile-btn-hidden');
+        navBurger.classList.remove('fa-bars-active');
+        Object.values(navOptions).forEach((option, index) => {
+            setTimeout(() => {
+                option.classList.remove('nav-text-hidden');
+            }, index * 50);
+        });
+    } else if (profileBtn.classList.contains('profile-btn-hidden')) {
+        return;
+    } else {
+        profileBtn.classList.add('profile-btn-hidden');
+        navBurger.classList.add('fa-bars-active');
+        Object.values(navOptions).forEach((option, index) => {
+            setTimeout(() => {
+                option.classList.add('nav-text-hidden');
+            }, index * 50);
+        });
+    }
+}
+
+function calculateSetupParallaxPosition(scrollPosition) {
+    const scrollDelta = scrollPosition - 1600;
+    let parallaxPosition = scrollDelta * (19 / 24) - 400;
+
+    if (scrollPosition < 1600) {
+        parallaxPosition = -400;
+    } else if (scrollPosition > 4000) {
+        parallaxPosition = 1500;
     }
 
     setupParallax.style.transform = `translateX(-50%) translateY(${parallaxPosition}px)`;
 }
 
 function calculateWhyUsParallaxLayers(scrollPosition) {
-    const scrollDelta = scrollPosition - 3400;
+    const scrollDelta = scrollPosition - 3800;
     let parallaxPositions = {
         minus2: 50 - scrollDelta * (1 / 15),
         minus1: 100 - scrollDelta * (2 / 15),
@@ -60,14 +108,14 @@ function calculateWhyUsParallaxLayers(scrollPosition) {
         plus2: scrollDelta * (4 / 15) - 200
     };
 
-    if (scrollPosition < 3400) {
+    if (scrollPosition < 3800) {
         parallaxPositions = {
             minus2: 50,
             minus1: 100,
             plus1: -150,
             plus2: -200
         };
-    } else if (scrollPosition > 4900) {
+    } else if (scrollPosition > 5300) {
         parallaxPositions = {
             minus2: -50,
             minus1: -100,
@@ -83,12 +131,12 @@ function calculateWhyUsParallaxLayers(scrollPosition) {
 }
 
 function calculateWhyUsPosition(scrollPosition) {
-    const scrollDelta = scrollPosition - 4800;
+    const scrollDelta = scrollPosition - 5200;
     let parallaxPosition = 0 - scrollDelta;
 
-    if (scrollPosition < 4800) {
+    if (scrollPosition < 5200) {
         parallaxPosition = 0;
-    } else if (scrollPosition > 5150) {
+    } else if (scrollPosition > 5550) {
         parallaxPosition = -350;
     }
 
@@ -96,7 +144,7 @@ function calculateWhyUsPosition(scrollPosition) {
 }
 
 function calculatePhoneParallaxes(scrollPosition) {
-    const scrollDelta = scrollPosition - 5000;
+    const scrollDelta = scrollPosition - 5400;
     let parallaxPositions = {
         phone1: 50 - scrollDelta * (1 / 20),
         phone2: scrollDelta * (1 / 20) - 50,
@@ -105,7 +153,7 @@ function calculatePhoneParallaxes(scrollPosition) {
         phone5: 50 - scrollDelta * (1 / 20)
     };
 
-    if (scrollPosition < 5000) {
+    if (scrollPosition < 5400) {
         parallaxPositions = {
             phone1: 50,
             phone2: -50,
@@ -113,7 +161,7 @@ function calculatePhoneParallaxes(scrollPosition) {
             phone4: -50,
             phone5: 50
         };
-    } else if (scrollPosition > 6000) {
+    } else if (scrollPosition > 6400) {
         parallaxPositions = {
             phone1: 0,
             phone2: 0,

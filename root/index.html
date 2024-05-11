@@ -13,11 +13,12 @@
         href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
         rel="stylesheet">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 
 <body>
     <section id="hero-model"></section>
-    <nav>
+    <nav id="nav">
         <section id="nav-content-wrapper">
             <a id="nav-logo">
                 <svg xmlns="http://www.w3.org/2000/svg" width="165.7" height="36">
@@ -28,11 +29,20 @@
                 </svg>
             </a>
             <ul id="nav-options">
-                <li><a href="index.html">Návody</a></li>
-                <li><a href="index.html" id="middle-nav-opt">O nás</a></li>
-                <li><a href="index.html">Objednat</a></li>
+                <li><a href="index.html">
+                        <div id="nav-option-1" class="nav-text">Návody</div>
+                    </a></li>
+                <li><a href="index.html">
+                        <div id="nav-option-2" class="nav-text">O nás</div>
+                    </a></li>
+                <li><a href="index.html">
+                        <div id="nav-option-3" class="nav-text">Objednat</div>
+                    </a></li>
             </ul>
-            <a href="index.html" id="profile-btn">Můj profil</a>
+            <a id="profile-btn">
+                <div id="profile-btn-text" class="nav-text">Můj profil</div>
+                <i id="burger" class="fa-solid fa-bars"></i>
+            </a>
         </section>
     </nav>
 
