@@ -163,6 +163,7 @@ nav ul a:hover {
     justify-content: flex-end;
     font-size: 1.55rem;
     font-weight: 700;
+    text-wrap: nowrap;
 }
 
 #profile-btn .nav-text {
@@ -184,6 +185,7 @@ main {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1;
 }
 
 #hero {
@@ -204,6 +206,7 @@ main {
     background-clip: text;
     background-image: var(--brand-gradient);
     height: 21.6rem;
+    max-width: 102rem;
     font-size: 20rem;
 }
 
@@ -211,6 +214,7 @@ main {
     display: flex;
     flex-direction: row;
     gap: 3rem;
+    z-index: 2;
 }
 
 .hero-btn {
@@ -307,6 +311,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 #how-it-work-wrapper {
@@ -320,6 +325,7 @@ main {
 
 #how-it-work-p {
     position: absolute;
+    text-wrap: nowrap;
     left: 50%;
     transform: translateX(-50%);
     font-size: 7rem;
@@ -471,10 +477,15 @@ main {
     width: 100%;
     padding: 10rem 0;
     background-color: #e8e8e8;
-    font-size: 6rem;
-    font-weight: 700;
     gap: 10rem;
     z-index: 1;
+}
+
+#wavetag-showcase p {
+    text-align: center;
+    font-size: 6rem;
+    font-weight: 700;
+    padding: 0 11rem;
 }
 
 #wavetag-showcase-cards {
@@ -543,7 +554,8 @@ main {
 
 #eco-img {
     position: absolute;
-    left: 30rem;
+    transform: translateX(50%);
+    right: 25rem;
     bottom: 0;
 }
 
@@ -631,6 +643,7 @@ footer {
 }
 
 #footer-wrapper {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(3, 1fr) 3fr;
     grid-template-rows: 1fr;
@@ -646,6 +659,15 @@ footer {
     justify-content: flex-start;
     align-items: flex-start;
     gap: 1rem;
+}
+
+.footer-column a {
+    font-size: 1.1rem;
+    transition: font-size 0.5s ease;
+}
+
+.footer-column a:hover {
+    font-size: 1.15rem;
 }
 
 .footer-column-header {
@@ -669,9 +691,288 @@ footer {
     width: 1.5rem;
     height: 1.5rem;
     object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+#footer-socials img:hover {
+    transform: scale(1.2);
 }
 
 #footer-logo {
     width: 12rem;
     padding-top: 1rem;
+}
+
+#footer-credits {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: last baseline;
+}
+
+#back-to-top {
+    position: relative;
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.fa-arrow-up {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(0rem);
+    top: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fa-arrow-up-visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-1rem);
+}
+
+@media screen and (max-width: 114rem) {
+
+    #nav-menu-wrapper,
+    #nav-content-wrapper,
+    #usage-content-wrapper,
+    #how-it-work-wrapper,
+    #profile-system-wrapper,
+    #eco-wrapper,
+    #faq,
+    #footer-wrapper {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1690px) {
+
+    #eco-header,
+    #eco-p {
+        z-index: 1;
+    }
+}
+
+@media screen and (max-width: 1580px) {
+    #hero-h {
+        font-size: 18rem;
+    }
+}
+
+@media screen and (max-width: 1470px) {
+    #hero-h {
+        font-size: 14rem;
+    }
+
+    #wavetag-showcase-cards {
+        height: 25rem;
+    }
+
+    .wavetag-showcase-cards {
+        width: 20rem;
+    }
+
+    .focused {
+        width: 35rem;
+    }
+
+    #eco-img {
+        right: 10%;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    #hero {
+        justify-content: center;
+        width: 90%;
+    }
+
+    #hero-model {
+        display: none;
+    }
+
+    #hero-h {
+        font-size: 10rem;
+        height: 11rem;
+    }
+
+    #nav-options {
+        display: none;
+    }
+
+    #how-it-work-wrapper {
+        align-items: center;
+    }
+
+    #how-it-work-p {
+        position: static;
+        left: auto;
+        transform: none;
+    }
+
+    .how-it-work-article:nth-child(3) {
+        align-self: center;
+    }
+
+    #footer-wrapper {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto;
+        row-gap: 2rem;
+    }
+
+    #footer-credits {
+        position: absolute;
+        bottom: -5rem;
+        left: 0;
+        width: 100%;
+    }
+
+    #footer-main {
+        width: 200%;
+    }
+
+    #faq-questions {
+        width: 90%;
+    }
+
+    #middle-column {
+        align-items: center;
+    }
+
+    #last-column {
+        align-items: flex-end;
+    }
+
+    .faq-answer {
+        width: 100%;
+    }
+
+    #eco-img {
+        right: 50%;
+        width: 60rem;
+        transform: translateX(76%) translateY(-15%);
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    #usage {
+        max-height: auto;
+        min-height: auto;
+        height: auto;
+        padding: 5rem 0;
+    }
+
+    #usage-content-wrapper {
+        flex-direction: column;
+        gap: 5rem;
+    }
+
+    #usage-h3 {
+        font-size: 5rem;
+    }
+
+    #how-it-work-p {
+        font-size: 5rem;
+    }
+
+    .how-it-work-article {
+        width: 80%;
+        height: 30rem;
+    }
+
+    .how-it-work-article img {
+        width: 100%;
+        height: 100%;
+    }
+
+    #why-us p {
+        font-size: 5rem;
+    }
+
+    #profile-system-header {
+        font-size: 5rem;
+    }
+
+    .profile-system-feature-callout {
+        font-size: 3rem;
+        width: 80%;
+    }
+
+    #wavetag-showcase p {
+        font-size: 5rem;
+        padding: 0 5rem;
+    }
+
+    #eco-header {
+        font-size: 5rem;
+    }
+
+    #eco-wrapper {
+        height: 45rem;
+    }
+
+    #eco-img {
+        bottom: 0;
+        transform: translateX(76%) translateY(5rem);
+    }
+
+    #faq-header {
+        font-size: 5rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #hero {
+        height: auto;
+        min-height: auto;
+        max-height: none;
+        padding: 20% 0;
+    }
+
+    #hero-h {
+        font-size: 8rem;
+        height: 8.5rem;
+    }
+
+    #hero-sh {
+        font-size: 2rem;
+    }
+
+    #usage-h3 {
+        font-size: 4rem;
+    }
+
+    #profile-system-header {
+        font-size: 4rem;
+    }
+
+    .profile-system-feature-callout {
+        font-size: 2.5rem;
+    }
+
+    #wavetag-showcase p {
+        font-size: 4rem;
+    }
+
+    #eco-header {
+        font-size: 4rem;
+    }
+
+    #faq-header {
+        font-size: 4rem;
+    }
+
+    #eco-wrapper {
+        margin: 5rem auto;
+    }
+
+    #eco-wrapper {
+        height: 45rem;
+    }
+
+    #eco-img {
+        bottom: 0;
+        width: 50rem;
+        transform: translateX(76%) translateY(0rem);
+    }
 }

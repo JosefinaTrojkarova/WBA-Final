@@ -6,6 +6,10 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { gsap } from "gsap";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin.js";
 
+if (window.innerWidth < 800) {
+	window.location.href = 'https://wavetag.cz';
+}
+
 // Create scene and camera
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -39,7 +43,7 @@ camera.add(blueLight2);
 scene.add(camera);
 
 // Create renderer
-const renderer = new THREE.WebGLRenderer({ alpha: true });
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0x000000, 0);
 document.body.appendChild(renderer.domElement);
@@ -52,6 +56,10 @@ section.appendChild(renderer.domElement);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enablePan = false;
 controls.enableZoom = false;
+controls.touches = {
+	ONE: THREE.TOUCH.NONE,
+	TWO: THREE.TOUCH.ROTATE
+}
 camera.position.z = 7;
 controls.update();
 
@@ -163,7 +171,9 @@ function animate() {
 	controls.enableDamping = true;
 	controls.update();
 
-	model.rotation.z += modelRotationZ;
+	if (model) {
+		model.rotation.z += modelRotationZ;
+	}
 
 	renderer.render(scene, camera);
 }

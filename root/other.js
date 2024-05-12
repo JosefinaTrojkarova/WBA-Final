@@ -97,7 +97,7 @@ window.addEventListener('scroll', handleScrollEffects);
 
 // Function to determine nav fold status
 function navFoldStatus(scrollPosition) {
-    if (scrollPosition === 0) {
+    if (scrollPosition === 0 && window.innerWidth > 1150) {
         profileBtn.classList.remove('profile-btn-hidden');
         navBurger.classList.remove('fa-bars-active');
         Object.values(navOptions).forEach((option, index) => {
@@ -123,10 +123,13 @@ function calculateSetupParallaxPosition() {
     let anchor = 0 - (setupSection.getBoundingClientRect().top - window.innerHeight / 2);
     let parallaxPosition = anchor * (5 / 6) - 400;
 
-    if (anchor < 0) {
+    if (anchor < 0 && window.innerWidth > 1150) {
         parallaxPosition = -400;
-    } else if (anchor > 2400) {
+    } else if (anchor > 2400 && window.innerWidth > 1150) {
         parallaxPosition = 1600;
+    } else if (window.innerWidth < 1150) {
+        setupParallax.style.transform = ''
+        return;
     }
 
     setupParallax.style.transform = `translateX(-50%) translateY(${parallaxPosition}px)`;
@@ -226,6 +229,12 @@ navBurger.addEventListener('click', () => {
     }
 });
 
+const profileButtonText = document.getElementById('profile-btn-text');
+
+profileButtonText.addEventListener('click', () => {
+    window.location.href = 'https://profil.wavetag.cz/login';
+});
+
 // Card focus animation
 const cards = document.querySelectorAll('.wavetag-showcase-cards');
 
@@ -252,32 +261,54 @@ cards.forEach(card => {
 // Faq animations
 const faqQuestions = document.querySelectorAll('.faq-question');
 const faqIcons = document.querySelectorAll('.faq-question-icon');
+const faqHeaders = document.querySelectorAll('.faq-question-h');
 
 faqQuestions.forEach((question, index) => {
     question.style.height = 'auto';
     let questionHeight = question.getBoundingClientRect().height - 50;
-    question.style.height = `2rem`;
+    let headerHeight = faqHeaders[index].getBoundingClientRect().height - 30;
+    question.style.height = `${headerHeight}px`;
 
     question.addEventListener('click', function () {
-        if (this.style.height !== '2rem') {
-            this.style.height = '2rem';
+        if (this.style.height !== `${headerHeight}px`) {
+            this.style.height = `${headerHeight}px`;
             faqIcons[index].setDirection(-1);
             faqIcons[index].play();
         } else {
-            faqQuestions.forEach(q => {
-                q.style.height = '2rem';
+            faqQuestions.forEach((q, i) => {
+                let hh = faqHeaders[i].getBoundingClientRect().height - 30;
+                q.style.height = `${hh}px`;
             });
 
             this.style.height = `${questionHeight}px`;
 
-            faqIcons.forEach((icon, i) => {
+            faqIcons.forEach((icon, ii) => {
                 icon.setDirection(-1);
                 icon.play();
-                if (i === index) {
+                if (ii === index) {
                     icon.setDirection(1);
                     icon.play();
                 }
             });
         }
+    });
+});
+
+// Back to top button
+const backToTop = document.getElementById('back-to-top');
+const backToTopIcon = document.getElementById('back-to-top-icon');
+
+backToTop.addEventListener('mouseenter', () => {
+    backToTopIcon.classList.add('fa-arrow-up-visible');
+});
+
+backToTop.addEventListener('mouseleave', () => {
+    backToTopIcon.classList.remove('fa-arrow-up-visible');
+});
+
+backToTop.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
     });
 });
